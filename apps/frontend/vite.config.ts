@@ -1,6 +1,8 @@
 /// <reference types='vitest' />
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import { scripts } from './package.json';
@@ -12,6 +14,13 @@ export default defineConfig({
   server: {
     port: 4200,
     host: 'localhost',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (apiPath) => apiPath.replace(/^\/api/, ''),
+      },
+    },
   },
 
   preview: {
@@ -20,10 +29,18 @@ export default defineConfig({
   },
 
   plugins: [
+    // @ts-expect-error plugin
+    TanStackRouterVite(),
     react(),
     nxViteTsPaths(),
     checker({ typescript: true, eslint: { lintCommand: scripts.lint } }),
   ],
+
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 
   build: {
     outDir: '../../dist/apps/frontend',
