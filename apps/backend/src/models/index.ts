@@ -1,4 +1,4 @@
-export type ActionType = 'A' | 'B' | 'C';
+export type ActionType = 'Follow-up' | 'Lead' | 'Sale';
 
 export interface Action {
   type: ActionType;

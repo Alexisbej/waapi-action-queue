@@ -13,7 +13,7 @@ describe('calculateCredits', () => {
 
   it('should not recalculate credits if the elapsed time is less than the timeout', () => {
     const credit: Credit = {
-      type: 'A',
+      type: 'Follow-up',
       value: 5,
       max: 10,
       lastUpdated: new Date(),
@@ -27,7 +27,7 @@ describe('calculateCredits', () => {
 
   it('should recalculate credits if the elapsed time is more than the timeout', () => {
     const credit: Credit = {
-      type: 'A',
+      type: 'Follow-up',
       value: 5,
       max: 10,
       lastUpdated: new Date(
@@ -46,7 +46,7 @@ describe('calculateCredits', () => {
 
   it('should update the lastUpdated property when recalculating credits', () => {
     const credit: Credit = {
-      type: 'A',
+      type: 'Follow-up',
       value: 5,
       max: 10,
       lastUpdated: new Date(
@@ -63,7 +63,7 @@ describe('calculateCredits', () => {
 
   it('should keep the same lastUpdated property when not recalculating credits', () => {
     const credit: Credit = {
-      type: 'A',
+      type: 'Follow-up',
       value: 5,
       max: 10,
       lastUpdated: new Date(),

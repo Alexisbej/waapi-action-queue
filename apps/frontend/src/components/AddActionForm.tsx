@@ -106,9 +106,9 @@ export default function AddActionForm() {
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="A">A</SelectItem>
-                      <SelectItem value="B">B</SelectItem>
-                      <SelectItem value="C">C</SelectItem>
+                      <SelectItem value="Follow-up">Follow-up</SelectItem>
+                      <SelectItem value="Lead">Lead</SelectItem>
+                      <SelectItem value="Sale">Sale</SelectItem>
                     </SelectContent>
                   </Select>
                 )}

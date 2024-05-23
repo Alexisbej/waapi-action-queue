@@ -2,19 +2,13 @@ import express from 'express';
 import request from 'supertest';
 import server from './main';
 import { Action, Credit } from './models';
-import {
-  getActions,
-  getCredits,
-  saveActions,
-  saveCredits,
-} from './storage/storage';
+import { getActions, getCredits, saveActions } from './storage/storage';
 
 jest.mock('./storage/storage');
 
 const mockedGetActions = getActions as jest.Mock;
 const mockedSaveActions = saveActions as jest.Mock;
 const mockedGetCredits = getCredits as jest.Mock;
-const mockedSaveCredits = saveCredits as jest.Mock;
 
 const app = express();
 app.use(express.json());
@@ -24,7 +18,7 @@ describe('API Endpoints', () => {
   describe('GET /queue', () => {
     it('should return the list of actions', async () => {
       const actions: Action[] = [
-        { title: 'foo', type: 'A', timestamp: new Date() },
+        { title: 'foo', type: 'Follow-up', timestamp: new Date() },
       ];
       mockedGetActions.mockReturnValue(actions);
 
@@ -45,7 +39,7 @@ describe('API Endpoints', () => {
       mockedGetActions.mockReturnValue(actions);
       mockedSaveActions.mockImplementation(jest.fn());
 
-      const newAction = { type: 'A' };
+      const newAction = { type: 'Follow-up' };
       const response = await request(app).post('/queue').send(newAction);
       expect(response.status).toBe(201);
       expect(response.body.type).toBe('A');
@@ -64,7 +58,7 @@ describe('API Endpoints', () => {
   describe('GET /credits', () => {
     it('should return the available credits', async () => {
       const credits: Credit[] = [
-        { type: 'A', value: 9, max: 10, lastUpdated: new Date() },
+        { type: 'Follow-up', value: 9, max: 10, lastUpdated: new Date() },
       ];
       mockedGetCredits.mockReturnValue(credits);
 

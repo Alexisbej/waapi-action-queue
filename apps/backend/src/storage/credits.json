@@ -1,18 +1,18 @@
 [
   {
-    "type": "A",
+    "type": "Follow-up",
     "value": 15,
     "max": 20,
     "lastUpdated": "2024-05-19T16:25:35.270Z"
   },
   {
-    "type": "B",
+    "type": "Lead",
     "value": 9,
     "max": 10,
     "lastUpdated": "2024-05-19T16:25:35.270Z"
   },
   {
-    "type": "C",
+    "type": "Sale",
     "value": 5,
     "max": 30,
     "lastUpdated": "2024-05-19T16:25:35.270Z"
